@@ -1,0 +1,22 @@
+Package: MALDIquantTools
+Version: 0.1
+Date: 2012-07-19
+Title: Additional tools for MALDIquant
+Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
+    email="mail@sebastiangibb.de"))
+Depends:
+    R (>= 2.14.0),
+    MALDIquant (>= 1.0)
+Suggests:
+    mzR (>= 1.2),
+    testthat
+Description: Additional tools for MALDIquant. This package is not intended for
+    public release on CRAN.
+License: GPL (>= 3)
+URL: http://strimmerlab.org/software/maldiquant/
+LazyLoad: yes
+Collate:
+    'mqReadMzAscii-functions.R'
+    'mqReadMzR-functions.R'
+    'package.R'
+    'readDirectory-functions.R'
