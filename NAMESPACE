@@ -1,4 +1,8 @@
+exportMethods(write.csv)
+exportMethods(write.table)
 export(mqReadMzAscii)
 export(mqReadMzCsv)
 export(mqReadMzR)
+importFrom(utils,write.csv)
+importFrom(utils,write.table)
 import(MALDIquant)

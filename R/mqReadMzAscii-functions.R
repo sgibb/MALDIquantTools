@@ -25,7 +25,8 @@
 #' @param path path to directory/file
 #' @param pattern file pattern to look for
 #' @param verbose verbose output?
-#' @param ... further arguments passed to \code{.readMzAsciiFile}
+#' @param ... further arguments passed to
+#'  \code{\link[MALDIquantTools]{.readMzAsciiFile}}
 #' 
 #' @return list of MALDIquant::MassSpectrum objects
 #'

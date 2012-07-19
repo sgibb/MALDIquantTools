@@ -13,7 +13,7 @@
   \item{verbose}{verbose output?}
 
   \item{...}{further arguments passed to
-  \code{.readMzAsciiFile}}
+  \code{\link[MALDIquantTools]{.readMzAsciiFile}}}
 }
 \value{
   list of MALDIquant::MassSpectrum objects

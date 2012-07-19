@@ -13,9 +13,10 @@
 ##
 ## See <http://www.gnu.org/licenses/>
 
-#' This method creates a filename for a \code{\linkS4class{AbstractMassObject}}.
+#' This method creates a filename for a \code{\linkS4class{AbstractMassObject}}
+#' object.
 #' 
-#' @param x \code{\linkS4class{AbstractMassObject}}
+#' @param x a \code{\linkS4class{AbstractMassObject}} object
 #' @param ending file typ (e.g. "txt", "pdf", ...)
 #' @return filename 
 #'
