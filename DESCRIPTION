@@ -20,3 +20,6 @@ Collate:
     'mqReadMzR-functions.R'
     'package.R'
     'readDirectory-functions.R'
+    'AllGenerics.R'
+    'filename-functions.R'
+    'filename-methods.R'

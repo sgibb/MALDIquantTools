@@ -86,7 +86,6 @@ mqReadMzCsv <- function(path, pattern="*.csv", verbose=FALSE,
 #'  \code{\link{read.table}}
 #' @keywords internal
 #' @rdname readMzAsciiFile
-
 .readMzAsciiFile <- function(file, verbose=FALSE, ...) {
   if (verbose) {
     message("Reading spectrum from ", sQuote(file), " ...")
