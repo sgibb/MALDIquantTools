@@ -29,5 +29,5 @@ check: build
 clean:
 	cd .. ;\
 	$(RM) -rf $(PACKAGE_NAME).Rcheck/ \
-	$(RM) -rf $(PACKAGE_NAME)_.*.tar.gz
+	$(RM) -rf $(PACKAGE_NAME)_*.tar.gz
 
