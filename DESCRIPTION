@@ -6,7 +6,8 @@ Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
 Depends:
     R (>= 2.14.0),
-    MALDIquant (>= 1.0)
+    MALDIquant (>= 1.0),
+    methods
 Suggests:
     mzR (>= 1.2),
     testthat
@@ -23,4 +24,4 @@ Collate:
     'AllGenerics.R'
     'filename-functions.R'
     'filename-methods.R'
-    'export-methods.R'
+    'write.table-methods.R'

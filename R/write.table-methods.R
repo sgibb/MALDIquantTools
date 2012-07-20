@@ -21,20 +21,22 @@
 #' @param x a \code{\linkS4class{AbstractMassObject}} object
 #' @param file filename
 #' @param row.names either a logical value indicating whether the row names of
-#'  ‘x’ are to be written along with ‘x’, or a character vector
+#'  \code{x} are to be written along with \code{x}, or a character vector
 #'  of row names to be written.
 #' @param col.names either a logical value indicating whether the column names
-#'  of ‘x’ are to be written along with ‘x’, or a character
+#'  of \code{x} are to be written along with \code{x}, or a character
 #'  vector of column names to be written.  See the section on
-#'  ‘CSV files’ for the meaning of ‘col.names = NA’.
+#'  \code{CSV files} for the meaning of \code{col.names = NA}.
+#' @param sep the field separator string.
 #' @param ... further arguments passed to \code{\link{write.table}}
 #'
 #' @seealso \code{\linkS4class{AbstractMassObject}}, \code{\link{write.table}}
-#' @aliases write.table,AbstractMassObject-method
+#' @aliases write.table,AbstractMassObject-method write.csv,AbstractMassObject-method
 #' @docType methods
 #' @rdname write.table-methods
-#' @importFrom utils write.table
+#' @importFrom utils write.table write.csv
 #' @exportMethod write.table
+#' @exportMethod write.csv
 setMethod(f="write.table",
   signature=signature(x="AbstractMassObject"),
   definition=function(x, file="", append=FALSE, quote=TRUE, sep=" ", eol="\n",
@@ -46,29 +48,6 @@ setMethod(f="write.table",
                      fileEncoding=fileEncoding))
 })
 
-#' Data output
-#' 
-#' This method prints a \code{\linkS4class{AbstractMassObject}} object 
-#' to a file or connection (in csv format).
-#' 
-#' @param x a \code{\linkS4class{AbstractMassObject}} object
-#' @param file filename
-#' @param row.names either a logical value indicating whether the row names of
-#'  ‘x’ are to be written along with ‘x’, or a character vector
-#'  of row names to be written.
-#' @param col.names either a logical value indicating whether the column names
-#'  of ‘x’ are to be written along with ‘x’, or a character
-#'  vector of column names to be written.  See the section on
-#'  ‘CSV files’ for the meaning of ‘col.names = NA’.
-#' @param sep the field separator string.
-#' @param ... further arguments passed to \code{\link{write.table}}
-#'
-#' @seealso \code{\linkS4class{AbstractMassObject}}, \code{\link{write.table}}
-#' @aliases write.table,AbstractMassObject-method
-#' @docType methods
-#' @rdname write.table-methods
-#' @importFrom utils write.csv
-#' @exportMethod write.csv
 setMethod(f="write.csv",
   signature=signature("AbstractMassObject"),
   definition=function(x, file="", row.names=FALSE, col.names=TRUE, sep=",",
