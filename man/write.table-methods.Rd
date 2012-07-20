@@ -1,8 +1,17 @@
 \docType{methods}
 \name{write.table}
+\alias{export}
+\alias{export,AbstractMassObject-method}
+\alias{exportCsv}
+\alias{exportCsv,AbstractMassObject-method}
+\alias{exportCsv,list-method}
+\alias{export,list-method}
+\alias{write.csv}
 \alias{write.csv,AbstractMassObject-method}
+\alias{write.csv,list-method}
 \alias{write.table}
 \alias{write.table,AbstractMassObject-method}
+\alias{write.table,list-method}
 \title{Data output}
 \arguments{
   \item{x}{a \code{\linkS4class{AbstractMassObject}}
@@ -23,11 +32,17 @@
 
   \item{sep}{the field separator string.}
 
+  \item{path}{directory path}
+
+  \item{force}{create \code{path} if not exists}
+
+  \item{ending}{file type (e.g. "txt", "csv", ...)}
+
   \item{...}{further arguments passed to
   \code{\link{write.table}}}
 }
 \description{
-  This method prints a
+  This methods prints a
   \code{\linkS4class{AbstractMassObject}} object to a file
   or connection.
 }
@@ -35,4 +50,5 @@
   \code{\linkS4class{AbstractMassObject}},
   \code{\link{write.table}}
 }
+\keyword{methods}
 

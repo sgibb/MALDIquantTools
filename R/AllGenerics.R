@@ -13,9 +13,12 @@
 ##
 ## See <http://www.gnu.org/licenses/>
 
-## AbstractMassObject
 if (is.null(getGeneric(".composeFilename")))
   setGeneric(".composeFilename", function(x, ...) standardGeneric(".composeFilename"))
+if (is.null(getGeneric("export")))
+  setGeneric("export", function(x, ...) standardGeneric("export"))
+if (is.null(getGeneric("exportCsv")))
+  setGeneric("exportCsv", function(x, ...) standardGeneric("exportCsv"))
 if (is.null(getGeneric("write.csv")))
   setGeneric("write.csv", function(...) standardGeneric("write.csv"))
 
@@ -47,6 +50,4 @@ if (is.null(getGeneric("write.csv")))
 #                                     standardGeneric("write.table"))
 if (is.null(getGeneric("write.table")))
   setGeneric("write.table")
-
-## end of AbstractMassObject
 

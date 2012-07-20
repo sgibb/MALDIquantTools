@@ -8,7 +8,7 @@ object.}
   \item{x}{a \code{\linkS4class{AbstractMassObject}}
   object}
 
-  \item{ending}{file typ (e.g. "txt", "pdf", ...)}
+  \item{ending}{file type (e.g. "txt", "pdf", ...)}
 }
 \value{
   filename

@@ -1,3 +1,5 @@
+exportMethods(export)
+exportMethods(exportCsv)
 exportMethods(write.csv)
 exportMethods(write.table)
 export(mqReadMzAscii)

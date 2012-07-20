@@ -17,7 +17,7 @@
 #' object.
 #' 
 #' @param x a \code{\linkS4class{AbstractMassObject}} object
-#' @param ending file typ (e.g. "txt", "pdf", ...)
+#' @param ending file type (e.g. "txt", "pdf", ...)
 #' @return filename 
 #'
 #' @seealso \code{\linkS4class{AbstractMassObject}}
