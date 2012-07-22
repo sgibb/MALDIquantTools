@@ -1,0 +1,10 @@
+RELEASE HISTORY OF THE "MALDIquantTools" PACKAGE
+================================================
+
+Version 0.2 [2012-07-22]:
+- Add export to ASCII and CSV files.
+
+Version 0.1 [2012-07-19]:
+- First public release
+- Import of ASCII, CSV and mzR supported files
+
