@@ -50,6 +50,12 @@
 #' @exportMethod write.csv
 #' @exportMethod export
 #' @exportMethod exportCsv
+#' @examples
+#' \dontrun{
+#' s <- createMassSpectrum(mass=1:5, intensity=6:10,
+#'                         metaData=list(fullName="sample1")
+#' write.csv(s, "/home/user/msdata/")
+#' }
 setMethod(f="write.table",
   signature=signature(x="AbstractMassObject"),
   definition=function(x, file="", append=FALSE, quote=TRUE, sep=" ", eol="\n",

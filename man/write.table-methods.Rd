@@ -46,6 +46,13 @@
   \code{\linkS4class{AbstractMassObject}} object to a file
   or connection.
 }
+\examples{
+\dontrun{
+s <- createMassSpectrum(mass=1:5, intensity=6:10,
+                        metaData=list(fullName="sample1")
+write.csv(s, "/home/user/msdata/")
+}
+}
 \seealso{
   \code{\linkS4class{AbstractMassObject}},
   \code{\link{write.table}}
