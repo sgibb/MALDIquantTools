@@ -4,7 +4,7 @@
 
 Additional tools for [MALDIquant](http://strimmerlab.org/software/maldiquant/)
 This package is **not** intended for
-public release on CRAN.
+public release on [CRAN](http://cran.r-project.org/).
 
 ## Install
 
