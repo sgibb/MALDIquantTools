@@ -19,3 +19,4 @@ install_github("MALDIquantTools", "sgibb")
 - Import of mzData, mzML (supported by
   [mzR](http://bioconductor.org/packages/release/bioc/html/mzR.html)), ASCII and CSV files
 - Export in ASCII and CSV files
+- Moving average
