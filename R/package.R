@@ -28,9 +28,10 @@
 #' 
 #' @docType package
 #' @name MALDIquantTools-package
-#' @aliases MALDIquantTools
+#' @aliases MALDIquantTools package-MALDIquantTools
 #' @author Sebastian Gibb <\email{mail@@sebastiangibb.de}>
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @keywords package
 #' @import MALDIquant
+#'
 NULL
