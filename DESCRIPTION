@@ -1,6 +1,6 @@
 Package: MALDIquantTools
-Version: 0.3
-Date: 2012-07-23
+Version: 0.4
+Date: 2012-07-25
 Title: Additional tools for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
@@ -9,6 +9,7 @@ Depends:
     MALDIquant (>= 1.0),
     methods
 Suggests:
+    bitops,
     mzR (>= 1.2),
     testthat
 Description: Additional tools for MALDIquant. This package is not intended for
@@ -26,3 +27,7 @@ Collate:
     'filename-methods.R'
     'write.table-methods.R'
     'movingAverage-functions.R'
+    'base64-functions.R'
+    'cat-functions.R'
+    'msd-functions.R'
+    'exportMsd-methods.R'

@@ -1,5 +1,6 @@
 exportMethods(export)
 exportMethods(exportCsv)
+exportMethods(exportMsd)
 exportMethods(write.csv)
 exportMethods(write.table)
 export(movingAverage)

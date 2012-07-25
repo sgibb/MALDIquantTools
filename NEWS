@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantTools" PACKAGE
 ================================================
 
+Version 0.4 [2012-07-25]:
+- Add export to mMass' MSD files
+
 Version 0.3 [2012-07-23]:
 - Add movingAverage
 
