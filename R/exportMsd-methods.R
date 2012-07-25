@@ -18,9 +18,11 @@
 #' This methods prints a \code{\linkS4class{MassSpectrum}} object 
 #' to a file or connection in mMass' MSD format.
 #' 
-#' @param object \code{\linkS4class{MassSpectrum}} object
+#' @param x \code{\linkS4class{MassSpectrum}} object
 #' @param file file name
 #' @param peaks optional,\code{\linkS4class{MassPeaks}} object
+#' @param path directory path
+#' @param force create \code{path} if not exists
 #'
 #' @seealso \code{\linkS4class{MassSpectrum}}
 #' @references \url{http://www.mmass.org}
