@@ -1,3 +1,5 @@
+export(binaryMatrix)
+export(isBinaryMatrix)
 exportMethods(export)
 exportMethods(exportCsv)
 exportMethods(exportMsd)

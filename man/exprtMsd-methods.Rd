@@ -5,12 +5,16 @@
 \alias{exportMsd,MassSpectrum-method}
 \title{Data output}
 \arguments{
-  \item{object}{\code{\linkS4class{MassSpectrum}} object}
+  \item{x}{\code{\linkS4class{MassSpectrum}} object}
 
   \item{file}{file name}
 
   \item{peaks}{optional,\code{\linkS4class{MassPeaks}}
   object}
+
+  \item{path}{directory path}
+
+  \item{force}{create \code{path} if not exists}
 }
 \description{
   This methods prints a \code{\linkS4class{MassSpectrum}}
