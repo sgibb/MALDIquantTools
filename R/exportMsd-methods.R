@@ -18,9 +18,11 @@
 #' This methods prints a \code{\linkS4class{MassSpectrum}} object 
 #' to a file or connection in mMass' MSD format.
 #' 
-#' @param x \code{\linkS4class{MassSpectrum}} object
+#' @param x a \code{\linkS4class{MassSpectrum}} object or a list of
+#'  \code{\linkS4class{MassSpectrum}} objects
 #' @param file file name
-#' @param peaks optional,\code{\linkS4class{MassPeaks}} object
+#' @param peaks optional,\code{\linkS4class{MassPeaks}} object or a list of
+#'  \code{\linkS4class{MassPeaks}} objects
 #' @param path directory path
 #' @param force create \code{path} if not exists
 #'
@@ -45,7 +47,7 @@ setMethod(f="exportMsd",
 
 setMethod(f="exportMsd",
   signature=signature(x="list"),
-  definition=function(x, path, peakList, force=TRUE) {
+  definition=function(x, path, peaks, force=TRUE) {
 
   if (!file.exists(path) && force) {
     dir.create(path, showWarnings=FALSE, recursive=TRUE)  

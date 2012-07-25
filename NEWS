@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantTools" PACKAGE
 ================================================
 
+Version 0.5.1 [2012-07-25]:
+- exportMsd: Fix argument peaks
+- .writeMsdDocument: Fix file.access test
+
 Version 0.5 [2012-07-25]:
 - Add binaryMatrix
 

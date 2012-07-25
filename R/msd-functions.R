@@ -15,7 +15,7 @@
 
 .writeMsdDocument <- function(x, file, peaks, encoding="utf-8") {
   ## stop if file isn't writeable
-  if (file.access(file, 2) != 0) {
+  if (file.exists(file) && file.access(file, 2) != 0) {
     stop("No permissions to write into ", sQuote(file), "!")
   }
 
