@@ -50,6 +50,7 @@ individualReferencePeaks <- function(l, minFrequency=0.9, tolerance=0.002) {
                  function(x)(sum(!is.na(x)) < minPeakNumber)))
     exclude <- mass[exclude]
 
+    ## search peak position
     l <- mapply(FUN=function(pre, post) {
       e <- post@mass %in% exclude;
       pre@mass <- pre@mass[!e];

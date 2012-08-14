@@ -3,8 +3,8 @@
 \title{This function looks for reference peaks in each individual sample.
 In contrast to \code{\link[MALDIquant]{referencePeaks}} it returns a
 \code{\link{list}} of \code{\linkS4class{MassPeaks}} where all non reference
-peaks are removed and the mass are not binned. This is useful to visualize
-reference peaks in each individual spectrum.}
+peaks are removed and the mass are not binned. E.g. this is useful to
+visualise reference peaks in each individual spectrum.}
 \usage{
   individualReferencePeaks(l, minFrequency = 0.9,
     tolerance = 0.002)
@@ -27,8 +27,8 @@ reference peaks in each individual spectrum.}
   \code{\link[MALDIquant]{referencePeaks}} it returns a
   \code{\link{list}} of \code{\linkS4class{MassPeaks}}
   where all non reference peaks are removed and the mass
-  are not binned. This is useful to visualize reference
-  peaks in each individual spectrum.
+  are not binned. E.g. this is useful to visualise
+  reference peaks in each individual spectrum.
 }
 \examples{
 l <- list(createMassPeaks(mass=1:5, intensity=1:5),
