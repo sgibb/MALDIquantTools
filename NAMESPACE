@@ -1,4 +1,5 @@
 export(binaryMatrix)
+export(binningCosts)
 export(isBinaryMatrix)
 exportMethods(export)
 exportMethods(exportCsv)
