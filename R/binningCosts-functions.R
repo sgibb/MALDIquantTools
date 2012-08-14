@@ -26,10 +26,13 @@
 #' pre <- list(createMassPeaks(mass=1:5, intensity=1:5),
 #'             createMassPeaks(mass=1:5+0.1, intensity=1:5),
 #'             createMassPeaks(mass=1:5+0.2, intensity=1:5))
-#' post <- binPeaks(pre)
+#' post <- binPeaks(pre, tolerance=0.2)
 #'
-#' binningCosts(pre, post)
-#' # NA NA  3  4  5  6  7  8 NA NA
+#' str(binningCosts(pre, post))
+#' # List of 3
+#' # $ : num [1:5] 0.0909 0.0476 0.0323 0.0244 0.0196
+#' # $ : num [1:5] 0 0 0 0 0
+#' # $ : num [1:5] 0.0909 0.0476 0.0323 0.0244 0.0196
 #' @export
 binningCosts <- function(pre, post, relative=TRUE) {
   MALDIquant:::.stopIfNotMassPeaksList(pre)
