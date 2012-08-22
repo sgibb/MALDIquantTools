@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantTools" PACKAGE
 ================================================
 
+Version 0.8 [2012-08-22]:
+- Remove binaryMatrix and isBinaryMatrix 
+  (now in package similarity: https://github.com/sgibb/similarity)
+
 Version 0.7 [2012-08-14]:
 - Add individualReferencePeaks
 
