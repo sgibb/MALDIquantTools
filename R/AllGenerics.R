@@ -21,6 +21,8 @@ if (is.null(getGeneric("exportCsv")))
   setGeneric("exportCsv", function(x, ...) standardGeneric("exportCsv"))
 if (is.null(getGeneric("exportMsd")))
   setGeneric("exportMsd", function(x, ...) standardGeneric("exportMsd"))
+if (is.null(getGeneric("monoisotopic")))
+  setGeneric("monoisotopic", function(object, ...) standardGeneric("monoisotopic"))
 if (is.null(getGeneric("write.csv")))
   setGeneric("write.csv", function(...) standardGeneric("write.csv"))
 
