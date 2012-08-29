@@ -149,17 +149,10 @@ setMethod(f="monoisotopic",
 ## list
 setMethod(f="monoisotopic",
   signature=signature(object="list"),
-  definition=function(object, chargeState=1:2, 
-                      isotopicDistance=1.004,
-                      # 1.004 M. Wehofsky et al., Eur. J. Mass Spectrom. 7, 39–46 (2001)
-                      tolerance=0.1, intensityTolerance=0.5,
-                      referenceTable) {
+  definition=function(object, ...) {
   ## test arguments
   MALDIquant:::.stopIfNotMassPeaksList(object)
   
-  return(lapply(object, monoisotopic, chargeState=chargeState,
-                isotopicDistance=isotopicDistance, tolerance=tolerance,
-                intensityTolerance=intensityTolerance,
-                referenceTable=referenceTable))
+  return(lapply(object, monoisotopic, ...))
 })
 
