@@ -1,7 +1,8 @@
 RELEASE HISTORY OF THE "MALDIquantTools" PACKAGE
 ================================================
 
-Version 0.8 [2012-08-22]:
+Version 0.8 [2012-08-29]:
+- Add monoisotopic peak detection
 - Remove binaryMatrix and isBinaryMatrix 
   (now in package similarity: https://github.com/sgibb/similarity)
 

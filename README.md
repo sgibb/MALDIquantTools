@@ -21,5 +21,5 @@ install_github("MALDIquantTools", "sgibb")
 - Export in ASCII, CSV, [mMass'](http://www.mmass.org) MSD files
 - Moving average
 - Convert a matrix to a binary one (replace `NA` by `0` and `!NA` by `1`)
-- Calculate binning costs (Was it difficult to bin your peak lists?)
 - Find reference peaks in each individual spectrum.
+- Find monoisotopic peaks in spectra.
