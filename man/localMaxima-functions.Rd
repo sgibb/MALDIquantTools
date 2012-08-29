@@ -16,7 +16,7 @@
 \examples{
 library("MALDIquantTools")
 x <- c(2:4, 3:1)
-MALDIquantTools:::.localMaxima(m) # == 3
+MALDIquantTools:::.localMaxima(x)
 }
 \keyword{internal}
 
