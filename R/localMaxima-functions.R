@@ -25,14 +25,14 @@
 #' @examples
 #' library("MALDIquantTools")
 #' x <- c(2:4, 3:1)
-#' MALDIquantTools:::.localMaxima(m) # == 3
+#' MALDIquantTools:::.localMaxima(x)
 #'
 
 .localMaxima <- function(y) {
   ## based on a posting of Brian Ripley on r-help mailinglist
   ## https://stat.ethz.ch/pipermail/r-help/2001-January/010704.html
-  windows <- embed(y, 3);
-  localMaxima <- max.col(windows, "first") == 2
-  return(c(FALSE, localMaxima, FALSE))
+  windows <- embed(c(0, y, 0), 3);
+  localMaxima <- max.col(windows, "first") == 2 & max.col(windows, "last") == 2
+  return(localMaxima)
 }
 
