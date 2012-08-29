@@ -30,7 +30,7 @@
 #'
 
 .whichClosest <- function(db, key) {
-  d <- abs(db-key);
+  d <- abs(db - key);
   return(which.min(d))
 }
 
