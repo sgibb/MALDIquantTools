@@ -33,7 +33,7 @@
 #' @seealso \code{\linkS4class{MassPeaks}},
 #'  \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
 #'  \code{\link[MALDIquantTools]{averagineTable}},
-#'  \code{\link[MALDIquantTools]{uniprotTable}}
+#'  \code{\link[MALDIquantTools]{uniProtTable}}
 #' @aliases monoisotopic,MassPeaks-method monoisotopic,list-method
 #' @docType methods
 #' @keywords methods

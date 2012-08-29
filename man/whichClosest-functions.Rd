@@ -14,7 +14,7 @@
   nearest index
 }
 \description{
-  This method looks for closest index to a given value.
+  This function looks for closest index to a given value.
 }
 \examples{
 library("MALDIquantTools")

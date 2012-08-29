@@ -15,7 +15,7 @@
 
 #' Find local maxima
 #' 
-#' This method looks for local maxima in a numeric vector.
+#' This function looks for local maxima in a numeric vector.
 #' 
 #' @param y double
 #' @return logical vector of local maxima 

@@ -15,7 +15,7 @@
 
 #' Find nearest index
 #' 
-#' This method looks for closest index to a given value.
+#' This function looks for closest index to a given value.
 #' 
 #' @param db double, database which contains reference values (sorted)
 #' @param key double, value to look for

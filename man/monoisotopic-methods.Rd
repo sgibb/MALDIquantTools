@@ -42,7 +42,7 @@ mass(m) # c(1, 20)
   \code{\linkS4class{MassPeaks}},
   \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
   \code{\link[MALDIquantTools]{averagineTable}},
-  \code{\link[MALDIquantTools]{uniprotTable}}
+  \code{\link[MALDIquantTools]{uniProtTable}}
 }
 \keyword{methods}
 
