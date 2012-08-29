@@ -56,7 +56,7 @@ setMethod(f="monoisotopic",
   definition=function(object, chargeState=1:2, 
                       isotopicDistance=1.004,
                       # 1.004 M. Wehofsky et al., Eur. J. Mass Spectrom. 7, 39–46 (2001)
-                      tolerance=0.1, intensityTolerance=0.5,
+                      tolerance=0.1, intensityTolerance=0.2,
                       referenceTable) {
 
   if (missing(referenceTable)) {
