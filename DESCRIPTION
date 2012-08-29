@@ -11,6 +11,7 @@ Depends:
 Suggests:
     bitops,
     mzR (>= 1.2),
+    BRAIN (>= 1.0),
     testthat
 Description: Additional tools for MALDIquant. This package is not intended for
     public release on CRAN.
@@ -36,3 +37,6 @@ Collate:
     'localMaxima-functions.R'
     'monoisotopic-methods.R'
     'whichClosest-functions.R'
+    'averagineTable-data.R'
+    'createReferenceTable-functions.R'
+    'uniProtTable-data.R'
