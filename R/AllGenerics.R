@@ -13,6 +13,8 @@
 ##
 ## See <http://www.gnu.org/licenses/>
 
+if (is.null(getGeneric(".binSpectrum")))
+  setGeneric(".binSpectrum", function(x, ...) standardGeneric(".binSpectrum"))
 if (is.null(getGeneric(".composeFilename")))
   setGeneric(".composeFilename", function(x, ...) standardGeneric(".composeFilename"))
 if (is.null(getGeneric("export")))

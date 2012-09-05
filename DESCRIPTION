@@ -1,6 +1,6 @@
 Package: MALDIquantTools
-Version: 0.8
-Date: 2012-08-29
+Version: 0.8.1
+Date: 2012-09-05
 Title: Additional tools for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
@@ -40,3 +40,4 @@ Collate:
     'averagineTable-data.R'
     'createReferenceTable-functions.R'
     'uniProtTable-data.R'
+    'binSpectrum-methods.R'
