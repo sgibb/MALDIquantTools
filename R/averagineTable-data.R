@@ -38,5 +38,5 @@
 #' @name averagineTable
 #' @docType data
 #' @rdname averagineTable
-#' @keywords data
+#' @keywords datasets
 NULL

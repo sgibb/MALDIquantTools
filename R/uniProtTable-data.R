@@ -31,5 +31,5 @@
 #' @name uniProtTable
 #' @docType data
 #' @rdname uniProtTable
-#' @keywords data
+#' @keywords datasets
 NULL

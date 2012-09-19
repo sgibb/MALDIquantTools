@@ -17,6 +17,5 @@
   \code{\link[MALDIquantTools]{averagineTable}},
   \code{\link[MALDIquantTools]{createUniProtReferenceTable}}
 }
-\keyword{data}
 \keyword{datasets}
 
