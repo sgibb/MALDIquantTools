@@ -15,7 +15,7 @@
 
 #' This function converts mass spectra stored in fid/mzXML files into
 #' ASCII/CSV/MSD files.
-#'                                                                                                                                                                           
+#'
 #' @param path path to files
 #' @param from source file format
 #' @param to target file format
