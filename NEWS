@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantTools" PACKAGE
 ================================================
 
+Version 0.10 [2012-10-07]:
+- Add estimateNoiseSuperSmoother
+
 Version 0.9.1 [2012-09-19]:
 - Add convertFiles (combines readBrukerFlexData/readMzXmlData and export*
   methods)

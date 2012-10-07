@@ -1,5 +1,6 @@
 export(binningCosts)
 export(convertFiles)
+export(estimateNoiseSuperSmoother)
 export(gelmap)
 export(individualReferencePeaks)
 exportMethods(export)
