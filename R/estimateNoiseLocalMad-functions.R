@@ -24,7 +24,7 @@
 #'  the highest one in the given window to be recognized as peak.
 #' @return logical vector of local maxima 
 #' 
-#' @keywords internal
+#' @export
 #' @rdname localMaxima-functions
 #' @examples
 #' library("MALDIquantTools")
@@ -32,14 +32,11 @@
 #' MALDIquantTools:::.localMaxima(x)
 #'
 
-.localMaxima <- function(y, halfWindowSize=1) {
-  ## based on a posting of Brian Ripley on r-help mailinglist
-  ## https://stat.ethz.ch/pipermail/r-help/2001-January/010704.html
+estimateNoiseLocalMad <- function(mass, intensity, halfWindowSize=20) {
   windowSize <- 2 * halfWindowSize + 1
-  windows <- embed(c(rep(0, halfWindowSize), y, rep(0, halfWindowSize)), 
+  windows <- embed(c(rep(NA, halfWindowSize), intensity, 
+                     rep(NA, halfWindowSize)), 
                    windowSize)
-  localMaxima <- max.col(windows, "first") == halfWindowSize+1 & 
-                 max.col(windows, "last") == halfWindowSize+1
-  return(localMaxima)
+  return(cbind(mass, apply(windows, 1, mad, na.rm=TRUE)))
 }
 

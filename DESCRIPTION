@@ -45,3 +45,5 @@ Collate:
     'binSpectrum-methods.R'
     'gelmap-functions.R'
     'convertFiles-functions.R'
+    'detectMonoisotopicPeaks-methods.R'
+    'estimateNoiseLocalMad-functions.R'
