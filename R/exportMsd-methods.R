@@ -15,7 +15,7 @@
 
 #' Data output
 #' 
-#' This methods prints a \code{\linkS4class{MassSpectrum}} object 
+#' These methods print a \code{\linkS4class{MassSpectrum}} object 
 #' to a file or connection in mMass' MSD format.
 #' 
 #' @param x a \code{\linkS4class{MassSpectrum}} object or a list of
@@ -31,7 +31,7 @@
 #' @aliases exportMsd,MassSpectrum-method exportMsd,list-method
 #' @docType methods
 #' @keywords methods
-#' @rdname exprtMsd-methods
+#' @rdname exportMsd-methods
 #' @exportMethod exportMsd
 #' @examples
 #' \dontrun{

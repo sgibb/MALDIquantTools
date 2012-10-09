@@ -19,7 +19,7 @@
   \item{force}{create \code{path} if not exists}
 }
 \description{
-  This methods prints a \code{\linkS4class{MassSpectrum}}
+  These methods print a \code{\linkS4class{MassSpectrum}}
   object to a file or connection in mMass' MSD format.
 }
 \examples{

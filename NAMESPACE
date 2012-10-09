@@ -1,6 +1,6 @@
 export(binningCosts)
 export(convertFiles)
-export(estimateNoiseLocalMad)
+export(estimateNoiseSuperSmoother)
 export(gelmap)
 export(individualReferencePeaks)
 exportMethods(detectMonoisotopicPeaks)

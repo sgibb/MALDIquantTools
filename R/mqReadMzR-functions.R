@@ -74,15 +74,15 @@ mqReadMzR <- function(path, pattern="*.mzML", verbose=FALSE, ...) {
   file <- normalizePath(file)
   
   ## load ms file
-  msData <- openMSfile(filename=file, ..., verbose=verbose)
+  msData <- mzR::openMSfile(filename=file, ..., verbose=verbose)
   
   ## read metadata
-  metaData <- c(file=file, runInfo(msData), instrumentInfo(msData))
+  metaData <- c(file=file, mzR::runInfo(msData), mzR::instrumentInfo(msData))
   
   spectra <- lapply(1:length(msData), function(x) {
-      peaks <- peaks(msData, x);
+      peaks <- mzR::peaks(msData, x);
       return(createMassSpectrum(mass=peaks[, 1], intensity=peaks[, 2],
-                                metaData=c(metaData, header(msData, x))))
+                                metaData=c(metaData, mzR::header(msData, x))))
   });
   
   ## close file
