@@ -61,7 +61,7 @@ setMethod(f="monoisotopic",
 
   if (missing(referenceTable)) {
     data("averagineTable")
-    referenceTable <- .GlobalEnv$averagineTable
+    referenceTable <- get("averagineTable", env=globalenv())
   }
 
   ## start with highest charge state

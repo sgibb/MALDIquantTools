@@ -100,7 +100,7 @@ setMethod(f="detectMonoisotopicPeaks",
   ## missing referenceTable?
   if (missing(referenceTable)) {
     data("averagineTable")
-    referenceTable <- .GlobalEnv$averagineTable
+    referenceTable <- get("averagineTable", env=globalenv())
   }
 
   ## start with highest charge state
@@ -177,7 +177,7 @@ setMethod(f="detectMonoisotopicPeaks",
       monoIdx <- potMonoIdx[t(isMono)]
 
       ## respect SNR
-      isNoise <- object@intensity < SNR * noise
+      isNoise <- object@intensity < (SNR * noise)
 
       monoisotopic[monoIdx] <- TRUE
       monoisotopic <- monoisotopic & !isNoise

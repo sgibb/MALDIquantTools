@@ -1,6 +1,6 @@
 Package: MALDIquantTools
-Version: 0.10
-Date: 2012-10-07
+Version: 0.11
+Date: 2012-10-10
 Title: Additional tools for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
