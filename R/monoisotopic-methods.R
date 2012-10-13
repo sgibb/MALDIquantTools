@@ -142,6 +142,7 @@ setMethod(f="monoisotopic",
 
   object@mass <- object@mass[monoisotopic]
   object@intensity <- object@intensity[monoisotopic]
+  object@snr <- object@snr[monoisotopic]
 
   return(object)
 })

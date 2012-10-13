@@ -55,6 +55,7 @@ individualReferencePeaks <- function(l, minFrequency=0.9, tolerance=0.002) {
       e <- post@mass %in% exclude;
       pre@mass <- pre@mass[!e];
       pre@intensity <- pre@intensity[!e];
+      pre@snr <- pre@snr[!e];
       return(pre)
     }, pre=l, post=binnedPeaks);
 

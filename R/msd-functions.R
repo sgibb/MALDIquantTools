@@ -94,7 +94,7 @@
     for (i in seq(along=x@mass)) {
       .catA("    <peak ",
             "mz=\"", x@mass[i], "\" intensity=\"", x@intensity[i], "\" ",
-            "baseline=\"0.000000\" />\n", file=file)
+            "baseline=\"0.000000\" sn=\"", x@snr[i], "\"/>\n", file=file)
     }
   .catA("  </peaklist>\n\n", file=file)
 }

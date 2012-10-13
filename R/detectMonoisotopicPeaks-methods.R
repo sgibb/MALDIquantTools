@@ -87,15 +87,16 @@ setMethod(f="detectMonoisotopicPeaks",
 
   noiseIndex <- object@mass %in% peaks[, 1]
 
-  object <- createMassPeaks(mass=peaks[, 1],
-                            intensity=peaks[, 2],
-                            metaData=object@metaData)
-
   if (is.matrix(noise)) {
     noise <- noise[noiseIndex, 2]
   } else {
     noise <- noise[noiseIndex]
   }
+
+  object <- createMassPeaks(mass=peaks[, 1],
+                            intensity=peaks[, 2],
+                            snr=peaks[, 2]/noise,
+                            metaData=object@metaData)
 
   ## missing referenceTable?
   if (missing(referenceTable)) {
@@ -186,6 +187,7 @@ setMethod(f="detectMonoisotopicPeaks",
 
   object@mass <- object@mass[monoisotopic]
   object@intensity <- object@intensity[monoisotopic]
+  object@snr <- object@snr[monoisotopic]
 
   return(object)
 })
