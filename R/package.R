@@ -20,8 +20,8 @@
 #'
 #' \tabular{ll}{
 #' Package: \tab MALDIquantTools \cr
-#' Version: \tab 0.11\cr
-#' Date: \tab 2012-10-10\cr
+#' Version: \tab 0.12\cr
+#' Date: \tab 2012-10-14\cr
 #' License: \tab GPL (>= 3)\cr
 #' URL: \tab http://strimmerlab.org/software/maldiquant/\cr
 #' }
@@ -32,6 +32,6 @@
 #' @author Sebastian Gibb <\email{mail@@sebastiangibb.de}>
 #' @references \url{http://strimmerlab.org/software/maldiquant/}
 #' @keywords package
-#' @import MALDIquant
+#' @import MALDIquant 
 #'
 NULL

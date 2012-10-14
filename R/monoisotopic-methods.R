@@ -72,7 +72,7 @@ setMethod(f="monoisotopic",
 
   monoisotopic <- logical(length(object))
 
-  localMaxima <- .localMaxima(object@intensity)
+  localMaxima <- MALDIquant:::.localMaxima(object@intensity, halfWindowSize=1)
 
   for (z in chargeState) {
     ## calculate peak difference

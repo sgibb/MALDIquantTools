@@ -1,12 +1,12 @@
 Package: MALDIquantTools
-Version: 0.11
-Date: 2012-10-10
+Version: 0.12
+Date: 2012-10-14
 Title: Additional tools for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
 Depends:
     R (>= 2.14.0),
-    MALDIquant (>= 1.0),
+    MALDIquant (>= 1.3.6),
     methods
 Suggests:
     bitops,
@@ -36,7 +36,6 @@ Collate:
     'exportMsd-methods.R'
     'binningCosts-functions.R'
     'individualReferencePeaks-functions.R'
-    'localMaxima-functions.R'
     'monoisotopic-methods.R'
     'whichClosest-functions.R'
     'averagineTable-data.R'

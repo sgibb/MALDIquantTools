@@ -16,10 +16,19 @@
 #' Monoisotopic Peak Detection
 #' 
 #' This method looks for monoisotopic peaks in a \code{\linkS4class{MassPeaks}}
-#' object.
+#' object. It is mostly a wrapper around
+#' \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}} and
+#' \code{\link[MALDIquantTools]{monoisotopic,MassPeaks-method}}.
 #' 
 #' @param object a \code{\linkS4class{MassSpectrum}} object or a list of
 #'  \code{\linkS4class{MassSpectrum}} objects
+#' @param halfWindowSize \code{numeric}, half window size. \cr
+#'  The resulting window reaches from \code{mass[currentIndex-halfWindowSize]}
+#'  to \code{mass[currentIndex+halfWindowSize]}. A local maximum have to be
+#'  the highest one in the given window to be recognized as peak.
+#' @param SNR single numeric value. \code{SNR} is an abbreviation for
+#'  \emph{s}ignal-to-\emph{n}oise-\emph{r}atio. A local maximum has to 
+#'  be higher than \code{SNR*noise} to be recognize as peak.
 #' @param chargeState \emph{z}, charge states used to look for isotopic pattern
 #' @param isotopicDistance \emph{z}, distance between two isotopic mass
 #' (\emph{chargeState == 1})
@@ -29,6 +38,8 @@
 #'  calculated isotopic intensities
 #' @param referenceTable data.frame, reference table of isotopic pattern
 #'  (default: \code{\link[MALDIquantTools]{averagineTable}})
+#' @param \dots arguments to be passed to
+#'  \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}}
 #'
 #' @seealso \code{\linkS4class{MassPeaks}}, \code{\linkS4class{MassSpectrum}},
 #'  \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
@@ -40,15 +51,6 @@
 #' @keywords methods
 #' @rdname detectMonoisotopicPeaks-methods
 #' @exportMethod detectMonoisotopicPeaks
-#' @examples
-#' p <- createMassPeaks(mass=c(1:5, 9, 20:24),
-#'                      intensity=c(5:1, 1, 3, 5:2))
-#'
-#' referenceTable <- data.frame(monoisotopicMass=c(1.01, 20.2),
-#'                              relativeIntensityApexToMonoisotopic=c(1, 5/3),
-#'                              apexIdx=c(1, 2))
-#' m <- monoisotopic(p, chargeState=1)
-#' mass(m) # c(1, 20)
 #'
 
 ## MassSpectrum
@@ -56,138 +58,23 @@ setMethod(f="detectMonoisotopicPeaks",
   signature=signature(object="MassSpectrum"),
   definition=function(object, 
                       halfWindowSize=20, SNR=2,
-                      fun,
                       chargeState=1:2, 
                       isotopicDistance=1.004,
                       # 1.004 M. Wehofsky et al., Eur. J. Mass Spectrom. 7, 39–46 (2001)
                       tolerance=0.1, intensityTolerance=0.2,
                       referenceTable, ...) {
 
-  ## noise detection
-  ## try to use user-defined noise estimation function
-  if (!missing(fun)) {
-    fun <- match.fun(fun)
-    noise <- fun(object@mass, object@intensity, ...)
-  } else {
-    noise <- estimateNoise(object)
-  }
+  object <- detectPeaks(object, halfWindowSize=halfWindowSize, SNR=0, ...)
+  object <- monoisotopic(object, chargeState=chargeState,
+                         isotopicDistance=isotopicDistance, tolerance=tolerance,
+                         intensityTolerance=intensityTolerance,
+                         referenceTable=referenceTable)
 
-  ## wrong noise argument given?
-  isCorrectNoise <- (is.matrix(noise) || is.numeric(noise)) &&
-                    ((nrow(noise) == length(object) && ncol(noise) == 2) ||
-                    (length(noise) == 1))
+  include <- object@snr > SNR
 
-  if (!isCorrectNoise) {
-    stop("The noise argument is not valid.")
-  }
-
-  ## simple peak detection
-  peaks <- MALDIquant:::.findLocalMaxima(object=object,
-                                         halfWindowSize=halfWindowSize)
-
-  noiseIndex <- object@mass %in% peaks[, 1]
-
-  if (is.matrix(noise)) {
-    noise <- noise[noiseIndex, 2]
-  } else {
-    noise <- noise[noiseIndex]
-  }
-
-  object <- createMassPeaks(mass=peaks[, 1],
-                            intensity=peaks[, 2],
-                            snr=peaks[, 2]/noise,
-                            metaData=object@metaData)
-
-  ## missing referenceTable?
-  if (missing(referenceTable)) {
-    data("averagineTable")
-    referenceTable <- get("averagineTable", env=globalenv())
-  }
-
-  ## start with highest charge state
-  chargeState <- sort(chargeState, decreasing=TRUE)
-
-  ## calculate mass difference
-  dMass <- c(diff(object@mass), Inf)
-
-  monoisotopic <- logical(length(object))
-
-  localMaxima <- .localMaxima(y=object@intensity, halfWindowSize=1)
-
-  for (z in chargeState) {
-    ## calculate peak difference
-    stepSize <- isotopicDistance/z
-    d <- dMass-isotopicDistance
-
-    ## isotopic distance?
-    isotopic <- abs(d) <= tolerance/z
-
-    ## is highest peak in an isotopic pattern?
-    apexIdx <- which(localMaxima & isotopic)
-    apexMass <- object@mass[apexIdx]
-
-    ## find closest reference setup
-    closest <- unlist(lapply((apexMass*z), .whichClosest,
-                              db=referenceTable$monoisotopicMass))
-
-    ## steps to go left (backwards)
-    steps <- (referenceTable$apexIdx[closest]-1)/z
-
-    ## relative apex intensity apex/mono
-    relApexIntensity <- referenceTable$relativeIntensityApexToMonoisotopic[closest]
-    
-    ### find potential monotopic positions
-    ### sometimes (between step changes (0 to 1, 1 to 2, ...)) the steps are one
-    ### dalton to short
-    potMonoIdx <- unlist(lapply(apexMass-(c(steps+1, steps, steps-1)*stepSize),
-                                .whichClosest, db=object@mass))
-    ### avoid "out of boundaries" error
-    potMonoIdx[potMonoIdx == 0] <- 1
-
-    potMonoMass <- object@mass[potMonoIdx]
-    potRelIntensity <- object@intensity[apexIdx]/object@intensity[potMonoIdx]
-
-    ## is mass distance correct?
-    d <- apexMass-potMonoMass-(abs(c(steps+1, steps, steps-1))*stepSize)
-    bMonoMass <- abs(d) <= tolerance/z
-
-    ## is intensity correct?
-    dIntensity <- abs(potRelIntensity-relApexIntensity)/potRelIntensity 
-    bMonoIntensity <- dIntensity <= intensityTolerance
-    
-    ## are mass and intensity correct?
-    bPotMono <- matrix(bMonoMass & bMonoIntensity, nrow=3, byrow=TRUE)
-
-    if (length(bPotMono)) {
-      ## find correct indentified monoisotopic peaks
-      na <- !bPotMono
-      bPotMono[na] <- 0
-      bPotMono[!na] <- 1
-      bPotMono <- t(bPotMono)
-
-      ## prefer lowest mass
-      maxCol <- max.col(bPotMono, "first")
-      isMono <- matrix(FALSE, nrow=ncol(bPotMono), ncol=nrow(bPotMono))
-      
-      for (i in seq(along=maxCol)) {
-        isMono[maxCol[i], i] <- TRUE
-      }
-
-      isMono[na] <- FALSE
-
-      monoIdx <- potMonoIdx[t(isMono)]
-
-      ## respect SNR
-      isNoise <- object@intensity < (SNR * noise)
-
-      monoisotopic[monoIdx] <- TRUE
-      monoisotopic <- monoisotopic & !isNoise
-    }
-  }
-
-  object@mass <- object@mass[monoisotopic]
-  object@intensity <- object@intensity[monoisotopic]
-  object@snr <- object@snr[monoisotopic]
+  object@mass <- object@mass[include]
+  object@intensity <- object@intensity[include]
+  object@snr <- object@snr[include]
 
   return(object)
 })
