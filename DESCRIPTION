@@ -45,4 +45,3 @@ Collate:
     'gelmap-functions.R'
     'convertFiles-functions.R'
     'detectMonoisotopicPeaks-methods.R'
-    'estimateNoise-functions.R'
