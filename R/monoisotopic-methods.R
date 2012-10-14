@@ -87,8 +87,8 @@ setMethod(f="monoisotopic",
     apexMass <- object@mass[apexIdx]
 
     ## find closest reference setup
-    closest <- unlist(lapply((apexMass*z), .whichClosest,
-                              db=referenceTable$monoisotopicMass))
+    closest <- MALDIquant:::.which.closest(apexMass*z,
+                                           referenceTable$monoisotopicMass)
 
     ## steps to go left (backwards)
     steps <- (referenceTable$apexIdx[closest]-1)/z
@@ -99,8 +99,9 @@ setMethod(f="monoisotopic",
     ### find potential monotopic positions
     ### sometimes (between step changes (0 to 1, 1 to 2, ...)) the steps are one
     ### dalton to short
-    potMonoIdx <- unlist(lapply(apexMass-(c(steps+1, steps, steps-1)*stepSize),
-                                .whichClosest, db=object@mass))
+    potMonoIdx <- MALDIquant:::.which.closest(
+      apexMass-(c(steps+1, steps, steps-1)*stepSize), object@mass)
+
     ### avoid "out of boundaries" error
     potMonoIdx[potMonoIdx == 0] <- 1
 

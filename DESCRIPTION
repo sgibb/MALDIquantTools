@@ -37,7 +37,6 @@ Collate:
     'binningCosts-functions.R'
     'individualReferencePeaks-functions.R'
     'monoisotopic-methods.R'
-    'whichClosest-functions.R'
     'averagineTable-data.R'
     'createReferenceTable-functions.R'
     'uniProtTable-data.R'
