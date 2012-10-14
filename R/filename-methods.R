@@ -30,7 +30,11 @@ setMethod(f=".composeFilename",
   definition=function(x, ending="txt") {
 
   if (!is.null(metaData(x)$fullName)) {
-    filename <- metaData(x)$fullName
+    if (length(metaData(x)$fullName) > 1) {
+      filename <- paste(metaData(x)$fullName, collapse="_", sep="")
+    } else {
+      filename <- metaData(x)$fullName
+    }
   } else {
     filename <- .cleanFilename(metaData(x)$file[1])
   } 
