@@ -17,9 +17,10 @@ install_github("MALDIquantTools", "sgibb")
 ## Features
 
 - Import of mzData, mzML (supported by
-  [mzR](http://bioconductor.org/packages/release/bioc/html/mzR.html)), ASCII and CSV files
-- Export in ASCII, CSV, [mMass'](http://www.mmass.org) MSD files
-- Moving average
+  [mzR](http://bioconductor.org/packages/release/bioc/html/mzR.html)), ASCII and CSV files.
+- Export in ASCII, CSV, [mMass'](http://www.mmass.org) MSD files.
+- Moving average.
+- Calculate FWHM. 
 - Noise estimation: Friedman's super smoother
 - Find reference peaks in each individual spectrum.
 - Find monoisotopic peaks in spectra.
