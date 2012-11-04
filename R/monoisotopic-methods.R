@@ -54,9 +54,9 @@
 setMethod(f="monoisotopic",
   signature=signature(object="MassPeaks"),
   definition=function(object, chargeState=1:2, 
-                      isotopicDistance=1.004,
-                      # 1.004 M. Wehofsky et al., Eur. J. Mass Spectrom. 7, 39–46 (2001)
-                      tolerance=0.1, intensityTolerance=0.2,
+                      isotopicDistance=1.00235,
+                      ## Park et al 2008, Anal. Chem.
+                      tolerance=1e-3, intensityTolerance=0.2,
                       referenceTable) {
 
   if (missing(referenceTable)) {
@@ -67,9 +67,6 @@ setMethod(f="monoisotopic",
   ## start with highest charge state
   chargeState <- sort(chargeState, decreasing=TRUE)
 
-  ## calculate mass difference
-  dMass <- c(diff(object@mass), Inf)
-
   monoisotopic <- logical(length(object))
 
   localMaxima <- MALDIquant:::.localMaxima(object@intensity, halfWindowSize=1)
@@ -77,10 +74,11 @@ setMethod(f="monoisotopic",
   for (z in chargeState) {
     ## calculate peak difference
     stepSize <- isotopicDistance/z
-    d <- dMass-isotopicDistance
 
     ## isotopic distance?
-    isotopic <- abs(d) <= tolerance/z
+    isotopic <- .pseudoCluster(object@mass, chargeState=z,
+                               isotopicDistance=isotopicDistance,
+                               tolerance=tolerance)
 
     ## is highest peak in an isotopic pattern?
     apexIdx <- which(localMaxima & isotopic)
@@ -110,7 +108,7 @@ setMethod(f="monoisotopic",
 
     ## is mass distance correct?
     d <- apexMass-potMonoMass-(abs(c(steps+1, steps, steps-1))*stepSize)
-    bMonoMass <- abs(d) <= tolerance/z
+    bMonoMass <- abs(d)/potMonoMass < tolerance
 
     ## is intensity correct?
     dIntensity <- abs(potRelIntensity-relApexIntensity)/potRelIntensity 
