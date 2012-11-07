@@ -1,4 +1,4 @@
-### Copyright 2012 Sebastian Gibb
+## Copyright 2012 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This is free software: you can redistribute it and/or modify
@@ -13,6 +13,23 @@
 ##
 ## See <http://www.gnu.org/licenses/>
 
+#' Find pseudoclusters.
+#'
+#' This function looks for (pseudo)isotopic clusters needed in monoisotopic 
+#' peak detection. 
+#'
+#' @param x \code{double}, vector of mass values
+#' @param chargeState \code{double}, calculate pseudoclusters for
+#'  \code{chargeState} charged ions.
+#' @param tolerance \code{double}, allowed deviation.
+#' @param isotopicDistance \code{double}, average distance between isotopic
+#'  mass values.
+#' 
+#' @return \code{logical} vector
+#'
+#' @seealso \code{\link[MALDIquantTools]{monoisotopic,MassPeaks-method}}
+#' @keywords internal
+#' @name pseudoCluster
 .pseudoCluster <- function(x, chargeState=1, tolerance=100e-6,
                           isotopicDistance=1.00235) {
 
@@ -30,3 +47,4 @@
 
   return(cluster)
 }
+
