@@ -53,10 +53,11 @@
 ## MassPeaks
 setMethod(f="monoisotopic",
   signature=signature(object="MassPeaks"),
-  definition=function(object, chargeState=1:2, 
+  definition=function(object, chargeState=1, 
                       isotopicDistance=1.00235,
                       ## Park et al 2008, Anal. Chem.
                       tolerance=1e-3, intensityTolerance=0.2,
+                      SNR=quantile(snr(object), probs=0.8),
                       referenceTable) {
 
   if (missing(referenceTable)) {
@@ -82,18 +83,16 @@ setMethod(f="monoisotopic",
 
     ## is highest peak in an isotopic pattern?
     apexIdx <- which(localMaxima & isotopic)
+    apexIdx <- apexIdx[object@snr[apexIdx] >= SNR]
     apexMass <- object@mass[apexIdx]
 
     ## find closest reference setup
     closest <- MALDIquant:::.which.closest(apexMass*z,
-                                           referenceTable$monoisotopicMass)
+                                           referenceTable$apexMass)
 
     ## steps to go left (backwards)
     steps <- (referenceTable$apexIdx[closest]-1)/z
 
-    ## relative apex intensity apex/mono
-    relApexIntensity <- referenceTable$relativeIntensityApexToMonoisotopic[closest]
-    
     ### find potential monotopic positions
     ### sometimes (between step changes (0 to 1, 1 to 2, ...)) the steps are one
     ### dalton to short
@@ -104,37 +103,42 @@ setMethod(f="monoisotopic",
     potMonoIdx[potMonoIdx == 0] <- 1
 
     potMonoMass <- object@mass[potMonoIdx]
-    potRelIntensity <- object@intensity[apexIdx]/object@intensity[potMonoIdx]
 
     ## is mass distance correct?
-    d <- apexMass-potMonoMass-(abs(c(steps+1, steps, steps-1))*stepSize)
+    nxt <- MALDIquant:::.which.closest(potMonoMass+stepSize, object@mass)
+    d <- object@mass[nxt]-(potMonoMass+stepSize)
     bMonoMass <- abs(d)/potMonoMass < tolerance
 
     ## is intensity correct?
-    dIntensity <- abs(potRelIntensity-relApexIntensity)/potRelIntensity 
-    bMonoIntensity <- dIntensity <= intensityTolerance
-    
+    dIntensity <- .isotopicScore(object=object, monoIdx=potMonoIdx,
+                                 apexIdx=apexIdx, stepSize=stepSize,
+                                 referenceTable=referenceTable, closest=closest,
+                                 intensityTolerance=intensityTolerance)
+    ## score valid? (>0)
+    bMonoIntensity <- dIntensity > 0
+
     ## are mass and intensity correct?
-    bPotMono <- matrix(bMonoMass & bMonoIntensity, nrow=3, byrow=TRUE)
+    bPotMono <- matrix(bMonoMass & bMonoIntensity, ncol=3, byrow=FALSE)
 
     if (length(bPotMono)) {
       ## find correct indentified monoisotopic peaks
       na <- !bPotMono
       bPotMono[na] <- 0
       bPotMono[!na] <- 1
-      bPotMono <- t(bPotMono)
+      dIntensity[na] <- -Inf
 
-      ## prefer lowest mass
-      maxCol <- max.col(bPotMono, "first")
-      isMono <- matrix(FALSE, nrow=ncol(bPotMono), ncol=nrow(bPotMono))
+      ## prefer highest scored intensity to select monoisotopic mass
+      maxCol <- max.col(dIntensity, "first")
+      
+      isMono <- matrix(FALSE, nrow=nrow(bPotMono), ncol=ncol(bPotMono))
       
       for (i in seq(along=maxCol)) {
-        isMono[maxCol[i], i] <- TRUE
+        isMono[i, maxCol[i]] <- TRUE
       }
 
       isMono[na] <- FALSE
 
-      monoIdx <- potMonoIdx[t(isMono)]
+      monoIdx <- potMonoIdx[isMono]
       monoisotopic[monoIdx] <- TRUE
     }
   }
