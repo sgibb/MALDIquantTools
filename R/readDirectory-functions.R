@@ -1,4 +1,4 @@
-## Copyright 2013 Sebastian Gibb
+## Copyright 2012 Sebastian Gibb
 ## <mail@sebastiangibb.de>
 ##
 ## This is free software: you can redistribute it and/or modify
