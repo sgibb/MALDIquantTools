@@ -19,7 +19,7 @@
   cluster <- logical(length(x))
 
   ## calculate peak difference
-  stepSize <- isotopicDistance/z
+  stepSize <- isotopicDistance/chargeState
 
   i <- MALDIquant:::.which.closest(x+stepSize, x)
 
