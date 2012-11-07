@@ -146,36 +146,43 @@ createUniProtReferenceTable <- function(file, organism=9606, keyword=181,
     unlink(f)
   }
 
-  return(df[order(df$monoisotopicMass), ])
+  return(df[sort(df$apexMass, method="quick", index.return=TRUE)$ix, ])
 }
  
 #' This function is a wrapper around \code{\link[BRAIN]{useBRAIN}}.
 #' 
-#' @param aC List with fields C, H, N, O, S of integer non-negative values.
+#' @param aC list with fields C, H, N, O, S of integer non-negative values.
+#' @param nRatio number of ratio products.
 #' @return data.frame
 #' 
 #' @seealso \code{\link[BRAIN]{useBRAIN}}
 #' @keywords internal
 #' @rdname useBRAIN-functions
 #'
-.useBRAIN <- function(aC) {
+.useBRAIN <- function(aC, nRatio=3) {
   r <- BRAIN::useBRAIN(aC=aC, nrPeaks=1000, stopOption="abundantEstim",
                        abundantEstim=10)
 
   maxIdx <- which.max(r$isoDistr)
-  monoIdx <- which(r$masses == r$monoisotopicMass)
-  monoisotopicMass <- r$monoisotopicMass
-  relativeIntensitySecondToMonoisotopic <-
-    r$isoDistr[monoIdx+1]/r$isoDistr[monoIdx]
-  relativeIntensityApexToMonoisotopic <- 
-    r$isoDistr[maxIdx]/r$isoDistr[monoIdx]
   if (is.na(r$monoisotopicMass)) {
     return(data.frame())
   } else {
-    return(data.frame(monoisotopicMass=monoisotopicMass,
-                      apexIdx=maxIdx,
-                      relativeIntensityApexToMonoisotopic,
-                      relativeIntensitySecondToMonoisotopic))
+    d <- data.frame(monoisotopicMass=r$monoisotopicMass,
+                    apexMass=r$masses[maxIdx],
+                    apexIdx=maxIdx,
+                    MvsA=r$isoDistr[1]/r$isoDistr[maxIdx])
+    s <- 1:nRatio
+    r$isoDistr <- r$isoDistr[s]
+    q <- r$isoDistr[-1]/head(r$isoDistr, -1)
+    p <- (head(r$isoDistr, -2)*r$isoDistr[-c(1, 2)])/
+         (head(r$isoDistr[-1], -1)^2)
+    d <- cbind(d, t(q), t(p))
+    s <- s-1
+    colnames(d) <- c("monoisotopicMass", "apexMass", "apexIdx", "MvsA",
+                     paste("I", s[-1], "vsI", head(s, -1), sep=""),
+                     paste("I", head(s, -2), "I", s[-c(1, 2)], 
+                           "vsI", head(s[-1], -1), ".2", sep=""))
+    return(as.data.frame(d))
   }
 }
 
