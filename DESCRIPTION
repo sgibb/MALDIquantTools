@@ -43,7 +43,6 @@ Collate:
     'binSpectrum-methods.R'
     'gelmap-functions.R'
     'convertFiles-functions.R'
-    'detectMonoisotopicPeaks-methods.R'
     'fwhm-methods.R'
     'isotopicScore-functions.R'
     'pseudoCluster-functions.R'
