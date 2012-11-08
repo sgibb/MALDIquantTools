@@ -27,8 +27,8 @@
 #'  (default: \code{\link[MALDIquantTools]{averagineTable}})
 #' @param closest \code{numeric}, index of closest mass in
 #'  \code{referenceTable}.
-#' @param intensityTolerance allowed difference between measured and
-#'  calculated isotopic intensities.
+#' @param intensityTolerance \code{double}, allowed difference between measured 
+#'  and calculated isotopic intensities.
 #' 
 #' @return score \code{matrix} 
 #'  (row1: theoretical mono-1Da, row2: mono, row3: mono+1Da)
@@ -45,7 +45,7 @@
 #' @seealso \code{\link[MALDIquantTools]{monoisotopic,MassPeaks-method}}
 #'  \code{\link[MALDIquantTools]{.pseudoCluster}}
 #' @keywords internal
-#' @name isotopicScore
+#' @rdname isotopicScore
 
 ## MassPeaks
 setMethod(f=".isotopicScore",

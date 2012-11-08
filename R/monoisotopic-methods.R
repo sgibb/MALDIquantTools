@@ -27,6 +27,9 @@
 #'  calculated isotopic mass
 #' @param intensityTolerance allowed difference between measured and
 #'  calculated isotopic intensities
+#' @param SNR \code{double}, minimal signal-to-noise ratio of most intense peak
+#'  in an isotopic pattern.
+#'  (default: \code{\link[MALDIquantTools]{averagineTable}})
 #' @param referenceTable data.frame, reference table of isotopic pattern
 #'  (default: \code{\link[MALDIquantTools]{averagineTable}})
 #'
@@ -39,15 +42,6 @@
 #' @keywords methods
 #' @rdname monoisotopic-methods
 #' @exportMethod monoisotopic
-#' @examples
-#' p <- createMassPeaks(mass=c(1:5, 9, 20:24),
-#'                      intensity=c(5:1, 1, 3, 5:2))
-#'
-#' referenceTable <- data.frame(monoisotopicMass=c(1.01, 20.2),
-#'                              relativeIntensityApexToMonoisotopic=c(1, 5/3),
-#'                              apexIdx=c(1, 2))
-#' m <- monoisotopic(p, chargeState=1)
-#' mass(m) # c(1, 20)
 #'
 
 ## MassPeaks

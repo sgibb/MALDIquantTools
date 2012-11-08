@@ -29,7 +29,7 @@
 #'
 #' @seealso \code{\link[MALDIquantTools]{monoisotopic,MassPeaks-method}}
 #' @keywords internal
-#' @name pseudoCluster
+#' @rdname pseudoCluster
 .pseudoCluster <- function(x, chargeState=1, tolerance=100e-6,
                           isotopicDistance=1.00235) {
 

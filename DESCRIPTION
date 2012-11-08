@@ -45,3 +45,5 @@ Collate:
     'convertFiles-functions.R'
     'detectMonoisotopicPeaks-methods.R'
     'fwhm-methods.R'
+    'isotopicScore-functions.R'
+    'pseudoCluster-functions.R'
