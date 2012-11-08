@@ -1,6 +1,11 @@
 RELEASE HISTORY OF THE "MALDIquantTools" PACKAGE
 ================================================
 
+Version 0.14 [2012-11-08]:
+- Rewrite monoisotopic
+- Remove detectMonoisotopicPeaks (it is too ugly, too much arguments, ...
+  use detectPeaks and monoisotopic instead)
+
 Version 0.13 [2012-10-18]:
 - Add fwhm
 
