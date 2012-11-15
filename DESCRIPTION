@@ -1,12 +1,12 @@
 Package: MALDIquantTools
-Version: 0.14
-Date: 2012-11-08
+Version: 0.15
+Date: 2012-11-15
 Title: Additional tools for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
 Depends:
     R (>= 2.14.0),
-    MALDIquant (>= 1.4),
+    MALDIquant (>= 1.4.3),
     methods
 Suggests:
     bitops,
@@ -29,7 +29,6 @@ Collate:
     'filename-functions.R'
     'filename-methods.R'
     'write.table-methods.R'
-    'movingAverage-functions.R'
     'base64-functions.R'
     'cat-functions.R'
     'msd-functions.R'
