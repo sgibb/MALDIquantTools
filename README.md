@@ -21,7 +21,6 @@ install_github("MALDIquantTools", "sgibb")
 - Export in ASCII, CSV, [mMass'](http://www.mmass.org) MSD files.
 - Moving average.
 - Calculate FWHM. 
-- Noise estimation: Friedman's super smoother
 - Find reference peaks in each individual spectrum.
 - Find monoisotopic peaks in spectra.
 - Draw gelmaps 
