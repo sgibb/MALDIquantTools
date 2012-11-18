@@ -78,16 +78,16 @@ setMethod(f=".isotopicScore",
 
   ## remove some false positives
   isNextPeakLarger <- object@intensity[nxt] > object@intensity[monoIdx]
-  isPrevPeakTooLarge <- object@intensity[prv] > object@intensity[nnxt] |
+  isPrevPeakTooLarge <- object@intensity[prv] > object@intensity[nxt] |
                         object@intensity[prv] > object@intensity[monoIdx] |
                         object@intensity[prv]/object@intensity[monoIdx] >
-                        referenceTable$I1vsI0[closest]
+                        referenceTable$I1vsI0[closest]*(1+intensityTolerance)
 
   s <- ifelse((isFirstPeakMono & isNextPeakLarger) |
               isPrevPeakTooLarge, -Inf, s)
   
-  ## create matrix (row1: theoretical mono-1Da, row2: mono, row3: mono+1Da)
-  sMatrix <- matrix(s, ncol=3, nrow=length(closest), byrow=FALSE) 
+  ## create matrix (row1: theoretical mono-1Da, row2: mono)
+  sMatrix <- matrix(s, ncol=2, nrow=length(closest), byrow=FALSE) 
 
   return(sMatrix)
 })
