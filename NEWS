@@ -4,6 +4,9 @@ RELEASE HISTORY OF THE "MALDIquantTools" PACKAGE
 Version 0.15 [2012-11-15]:
 - Remove movingAverage (moved to MALDIquant >= 1.4.3).
 
+Version 0.14.1 [2012-11-18]:
+- monoisotopic: adjust score calculation.
+
 Version 0.14 [2012-11-08]:
 - Rewrite monoisotopic.
 - Remove detectMonoisotopicPeaks (it is too ugly, too much arguments, ...
