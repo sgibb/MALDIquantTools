@@ -91,7 +91,12 @@ setMethod(f="monoisotopic",
     ### sometimes (between step changes (0 to 1, 1 to 2, ...)) the steps are one
     ### dalton to short
     potMonoIdx <- MALDIquant:::.which.closest(
-      apexMass-(c(steps+1, steps, steps-1)*stepSize), object@mass)
+      apexMass-(c(steps+1, steps)*stepSize), object@mass)
+
+    stepChangeIdx <- which(diff(referenceTable$apexIdx) != 0)
+    isStepChange <- findInterval(apexMass,
+      sort(referenceTable$apexMass[c(stepChangeIdx, stepChangeIdx+1)],
+           method="quick")) %% 2 == 1
 
     ### avoid "out of boundaries" error
     potMonoIdx[potMonoIdx == 0] <- 1
@@ -112,7 +117,11 @@ setMethod(f="monoisotopic",
     bMonoIntensity <- dIntensity > 0
 
     ## are mass and intensity correct?
-    bPotMono <- matrix(bMonoMass & bMonoIntensity, ncol=3, byrow=FALSE)
+    bPotMono <- matrix(bMonoMass & bMonoIntensity, ncol=2, byrow=FALSE)
+
+    ## ignore reduced monoisotopic mass (-1Da) for mass which are not in a
+    ## critical range (step change range)
+    bPotMono[, 1] <- bPotMono[, 1] & isStepChange
 
     if (length(bPotMono)) {
       ## find correct indentified monoisotopic peaks
