@@ -70,7 +70,7 @@ gelmap <- function(x, col=gray((255:1)/255), rowLabels, colLabels,
   if (MALDIquant::isMassSpectrumList(x)) {
     arguments <- list(x=x)
 
-    if (MALDIquant:::.isArgument("nbins", optArgs)) {
+    if (hasArg("nbins")) {
       arguments$nbins <- optArgs$nbins
       optArgs <- MALDIquant:::.removeArguments("nbins", optArgs)
     } else {
@@ -149,5 +149,7 @@ gelmap <- function(x, col=gray((255:1)/255), rowLabels, colLabels,
     colLabels <- as.character(mass)
   }
   axis(1, at=axTicks(1, axp=c(1, nc, length(colLabels)-1)), labels=colLabels)
+
+  invisible(NULL)
 }
 
