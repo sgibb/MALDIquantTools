@@ -53,7 +53,6 @@ setMethod(f=".isotopicScore",
   definition=function(object, monoIdx, apexIdx, stepSize,
                       referenceTable, closest, intensityTolerance) {
  
-  prv <- MALDIquant:::.which.closest(object@mass[monoIdx]-stepSize, object@mass)
   nxt <- MALDIquant:::.which.closest(object@mass[monoIdx]+stepSize, object@mass)
   nnxt <- MALDIquant:::.which.closest(object@mass[monoIdx]+2*stepSize,
                                       object@mass)
@@ -65,29 +64,20 @@ setMethod(f=".isotopicScore",
 
   ## calculate differences in ratios
   ma <- (1-abs(iMiA-referenceTable$MvsA[closest])/
-         (intensityTolerance*referenceTable$MvsA[closest]))
+          (intensityTolerance*referenceTable$MvsA[closest]))
   r1 <- (1-abs(i1i0-referenceTable$I1vsI0[closest])/
-         (intensityTolerance*referenceTable$I1vsI0[closest]))
+          (intensityTolerance*referenceTable$I1vsI0[closest]))
   r2 <- (1-abs(i2i1-referenceTable$I2vsI1[closest])/
-         (intensityTolerance*referenceTable$I2vsI1[closest]))
+          (intensityTolerance*referenceTable$I2vsI1[closest]))
 
   isFirstPeakMono <- object@mass[monoIdx] < 1750
 
   ## calculate score
-  s <- ifelse(isFirstPeakMono, ma, ma + r1 + r2)
+  s <- ifelse(isFirstPeakMono, ma + r1, ma + r1 + r2)
 
-  ## remove some false positives
-  isNextPeakLarger <- object@intensity[nxt] > object@intensity[monoIdx]
-  isPrevPeakTooLarge <- object@intensity[prv] > object@intensity[nxt] |
-                        object@intensity[prv] > object@intensity[monoIdx] |
-                        object@intensity[prv]/object@intensity[monoIdx] >
-                        referenceTable$I1vsI0[closest]*(1+intensityTolerance)
-
-  s <- ifelse((isFirstPeakMono & isNextPeakLarger) |
-              isPrevPeakTooLarge, -Inf, s)
-  
   ## create matrix (row1: theoretical mono-1Da, row2: mono)
-  sMatrix <- matrix(s, ncol=2, nrow=length(closest), byrow=FALSE) 
+  sMatrix <- matrix(s, ncol=3, nrow=length(closest), byrow=FALSE) 
 
   return(sMatrix)
 })
+
