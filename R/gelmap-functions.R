@@ -19,7 +19,6 @@
 #'  \code{\linkS4class{MassPeaks}} objects.
 #' @param col gelmap colours.
 #' @param rowLabels labels of rows.
-#' @param colLabels labels of columns.
 #' @param dendrogram a \code{\link[stats]{dendrogram}} which is plotted on the
 #'  left of the gelmap.
 #' @param dendrogramRatio ratio of width of dendrogram to gelmap.
@@ -62,7 +61,7 @@
 #' ## plot gelmap
 #' gelmap(peaks, rowLabels=rowLabels, dendrogram=d)
 #'
-gelmap <- function(x, col=gray((255:1)/255), rowLabels, colLabels,
+gelmap <- function(x, col=gray((255:1)/255), rowLabels, 
                    dendrogram, dendrogramRatio=1/5, xlab="mass", ...) {
   ## handle arguments
   optArgs <- list(...);
@@ -141,14 +140,9 @@ gelmap <- function(x, col=gray((255:1)/255), rowLabels, colLabels,
   }
 
   ## plot x axis
-  if (missing(colLabels)) {
-    ticks <- axTicks(1, axp=c(1, nc, parSettings$xaxp[3]))
-    mass <- as.double(colnames(x)[ticks])
-    ## round to nearest 100
-    mass <- floor((mass + 50) / 100) * 100;
-    colLabels <- as.character(mass)
-  }
-  axis(1, at=axTicks(1, axp=c(1, nc, length(colLabels)-1)), labels=colLabels)
+  mass <- as.double(colnames(x))
+  colLabels <- as.character(round(mass))[seq(1, nc, length.out=10)]
+  axis(1, at=axTicks(1, axp=c(1, nc, length(colLabels)-1)), labels=colLabels, las=2)
 
   invisible(NULL)
 }

@@ -2,8 +2,8 @@
 \alias{gelmap}
 \title{This function draws a simple pseudo-gelmap.}
 \usage{
-  gelmap(x, col = gray((255:1)/255), rowLabels, colLabels,
-    dendrogram, dendrogramRatio = 1/5, xlab = "mass", ...)
+  gelmap(x, col = gray((255:1)/255), rowLabels, dendrogram,
+    dendrogramRatio = 1/5, xlab = "mass", ...)
 }
 \arguments{
   \item{x}{a list of \code{\linkS4class{MassSpectrum}} or a
@@ -12,8 +12,6 @@
   \item{col}{gelmap colours.}
 
   \item{rowLabels}{labels of rows.}
-
-  \item{colLabels}{labels of columns.}
 
   \item{dendrogram}{a \code{\link[stats]{dendrogram}} which
   is plotted on the left of the gelmap.}
