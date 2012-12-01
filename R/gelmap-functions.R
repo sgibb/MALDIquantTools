@@ -98,7 +98,7 @@ gelmap <- function(x, col=gray((255:1)/255), rowLabels,
   if (!missing(dendrogram)) {
     layout(t(as.matrix(1:2)), widths=c(1, 1/dendrogramRatio),
            heights=rep(1, 2))
-    par(mai=c(1, 0.25, 0.8, 0))
+    par(mai=c(0.85, 0.25, 0.65, 0))
 
     if (!inherits(dendrogram, "dendrogram")) {
       dendrogram <- as.dendrogram(dendrogram, hang=-1)
