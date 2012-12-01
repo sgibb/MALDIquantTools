@@ -3,7 +3,8 @@
 \title{This function draws a simple pseudo-gelmap.}
 \usage{
   gelmap(x, col = gray((255:1)/255), rowLabels, dendrogram,
-    dendrogramRatio = 1/5, xlab = "mass", ...)
+    dendrogramRatio = 1/5, xlab = "mass", cex.axis = 0.75,
+    ...)
 }
 \arguments{
   \item{x}{a list of \code{\linkS4class{MassSpectrum}} or a
@@ -20,6 +21,9 @@
   gelmap.}
 
   \item{xlab}{a label for the x axis.}
+
+  \item{cex.axis}{magnification to be used for axis
+  annotation (relative to current setting of \code{cex}).}
 
   \item{\ldots}{further arguments passed to
   \code{\link[graphics]{image}}.}

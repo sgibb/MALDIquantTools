@@ -23,6 +23,8 @@
 #'  left of the gelmap.
 #' @param dendrogramRatio ratio of width of dendrogram to gelmap.
 #' @param xlab a label for the x axis.
+#' @param cex.axis magnification to be used for axis annotation (relative to
+#'  current setting of \code{cex}).
 #' @param \ldots further arguments passed to \code{\link[graphics]{image}}.
 #'
 #' @export
@@ -62,7 +64,8 @@
 #' gelmap(peaks, rowLabels=rowLabels, dendrogram=d)
 #'
 gelmap <- function(x, col=gray((255:1)/255), rowLabels, 
-                   dendrogram, dendrogramRatio=1/5, xlab="mass", ...) {
+                   dendrogram, dendrogramRatio=1/5, xlab="mass", cex.axis=0.75,
+                   ...) {
   ## handle arguments
   optArgs <- list(...);
 
@@ -87,6 +90,8 @@ gelmap <- function(x, col=gray((255:1)/255), rowLabels,
 
   ## backup graphical settings and restore them later
   parSettings <- par(no.readonly=TRUE)
+  par(cex.axis=cex.axis)
+  par(cex.lab=cex.axis)
   on.exit(par(parSettings))
   
   nr <- nrow(x)
