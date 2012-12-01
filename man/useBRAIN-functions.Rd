@@ -2,7 +2,7 @@
 \alias{.useBRAIN}
 \title{This function is a wrapper around \code{\link[BRAIN]{useBRAIN}}.}
 \usage{
-  .useBRAIN(aC, nRatio = 3)
+  .useBRAIN(aC, nRatio = 2)
 }
 \arguments{
   \item{aC}{list with fields C, H, N, O, S of integer

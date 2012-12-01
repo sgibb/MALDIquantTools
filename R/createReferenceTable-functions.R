@@ -159,7 +159,7 @@ createUniProtReferenceTable <- function(file, organism=9606, keyword=181,
 #' @keywords internal
 #' @rdname useBRAIN-functions
 #'
-.useBRAIN <- function(aC, nRatio=3) {
+.useBRAIN <- function(aC, nRatio=2) {
   r <- BRAIN::useBRAIN(aC=aC, nrPeaks=1000, stopOption="abundantEstim",
                        abundantEstim=10)
 
@@ -171,17 +171,13 @@ createUniProtReferenceTable <- function(file, organism=9606, keyword=181,
                     apexMass=r$masses[maxIdx],
                     apexIdx=maxIdx,
                     MvsA=r$isoDistr[1]/r$isoDistr[maxIdx])
-    s <- 1:nRatio
+    s <- 1:(nRatio+1)
     r$isoDistr <- r$isoDistr[s]
     q <- r$isoDistr[-1]/head(r$isoDistr, -1)
-    p <- (head(r$isoDistr, -2)*r$isoDistr[-c(1, 2)])/
-         (head(r$isoDistr[-1], -1)^2)
-    d <- cbind(d, t(q), t(p))
+    d <- cbind(d, t(q))
     s <- s-1
     colnames(d) <- c("monoisotopicMass", "apexMass", "apexIdx", "MvsA",
-                     paste("I", s[-1], "vsI", head(s, -1), sep=""),
-                     paste("I", head(s, -2), "I", s[-c(1, 2)], 
-                           "vsI", head(s[-1], -1), ".2", sep=""))
+                     paste("I", s[-1], "vsI", head(s, -1), sep=""))
     return(as.data.frame(d))
   }
 }
