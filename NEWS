@@ -1,6 +1,10 @@
 RELEASE HISTORY OF THE "MALDIquantTools" PACKAGE
 ================================================
 
+Version 0.17 [2012-12-11]:
+- Remove all import/export functions (moved to MALDIquantForeign >= 0.1 on
+  CRAN).
+
 Version 0.16 [2012-12-01]:
 - monoisotopic: remove "false-positive-rule".
 - gelmap: fix x axis labels and dendrogram marigns; add cex.axis argument.
