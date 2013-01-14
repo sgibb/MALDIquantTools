@@ -19,7 +19,6 @@ LazyLoad: yes
 Collate:
     'package.R'
     'AllGenerics.R'
-    'cat-functions.R'
     'binningCosts-functions.R'
     'individualReferencePeaks-functions.R'
     'monoisotopic-methods.R'
