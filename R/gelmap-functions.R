@@ -67,14 +67,14 @@ gelmap <- function(x, col=gray((255:1)/255), rowLabels,
                    dendrogram, dendrogramRatio=1/5, xlab="mass", cex.axis=0.75,
                    ...) {
   ## handle arguments
-  optArgs <- list(...);
+  optArgs <- list(...)
 
   if (MALDIquant::isMassSpectrumList(x)) {
     arguments <- list(x=x)
 
     if (hasArg("nbins")) {
       arguments$nbins <- optArgs$nbins
-      optArgs <- MALDIquant:::.removeArguments("nbins", optArgs)
+      optArgs[["nbins"]] <- NULL
     } else {
       arguments$nbins <- median(unlist(lapply(x, length)))/10
     }
