@@ -32,7 +32,7 @@
 #' @export
 individualReferencePeaks <- function(l, minFrequency=0.9, tolerance=0.002) {
 
-    MALDIquant:::.stopIfNotMassPeaksList(l)
+    MALDIquant:::.stopIfNotIsMassPeaksList(l)
 
     ## find reference peaks by binning and filtering
     binnedPeaks <- binPeaks(l, tolerance=tolerance)

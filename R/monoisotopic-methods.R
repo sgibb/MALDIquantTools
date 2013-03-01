@@ -149,7 +149,7 @@ setMethod(f="monoisotopic",
   signature=signature(object="list"),
   definition=function(object, ...) {
   ## test arguments
-  MALDIquant:::.stopIfNotMassPeaksList(object)
+  MALDIquant:::.stopIfNotIsMassPeaksList(object)
   
   return(lapply(object, monoisotopic, ...))
 })

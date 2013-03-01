@@ -51,8 +51,8 @@ setMethod(f="fwhm",
   definition=function(spec, peaks) {
 
   ## test arguments
-  MALDIquant:::.stopIfNotMassSpectrumList(spec);
-  MALDIquant:::.stopIfNotMassPeaksList(peaks);
+  MALDIquant:::.stopIfNotIsMassSpectrumList(spec);
+  MALDIquant:::.stopIfNotIsMassPeaksList(peaks);
 
   stopifnot(length(spec) == length(peaks))
 

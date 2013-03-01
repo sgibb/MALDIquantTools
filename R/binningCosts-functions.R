@@ -35,8 +35,8 @@
 #' # $ : num [1:5] 0.0909 0.0476 0.0323 0.0244 0.0196
 #' @export
 binningCosts <- function(pre, post, relative=TRUE) {
-  MALDIquant:::.stopIfNotMassPeaksList(pre)
-  MALDIquant:::.stopIfNotMassPeaksList(post)
+  MALDIquant:::.stopIfNotIsMassPeaksList(pre)
+  MALDIquant:::.stopIfNotIsMassPeaksList(post)
   stopifnot(length(pre) == length(post))
 
   costsList <- mapply(FUN=function(pre, post, relative) {

@@ -51,7 +51,7 @@ setMethod(f=".binSpectrum",
   signature=signature(x="list"),
   definition=function(x, nbins, from, to, fun=max) {
 
-  MALDIquant:::.stopIfNotMassSpectrumList(x)
+  MALDIquant:::.stopIfNotIsMassSpectrumList(x)
 
   if (missing(from)) {
     from <- min(unlist(sapply(x, mass)))
