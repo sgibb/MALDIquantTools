@@ -1,6 +1,4 @@
-\docType{methods}
-\name{.binSpectrum}
-\alias{.binSpectrum}
+\name{.binSpectrum,MassSpectrum-method}
 \alias{.binSpectrum,MassSpectrum-method}
 \title{This method does a stupid binning of mass values.}
 \arguments{

@@ -1,5 +1,4 @@
-\docType{methods}
-\name{monoisotopic}
+\name{monoisotopic,MassPeaks-method}
 \alias{monoisotopic}
 \alias{monoisotopic,list-method}
 \alias{monoisotopic,MassPeaks-method}

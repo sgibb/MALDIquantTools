@@ -14,10 +14,10 @@
 ## See <http://www.gnu.org/licenses/>
 
 #' Monoisotopic Peak Detection
-#' 
+#'
 #' This method looks for monoisotopic peaks in a \code{\linkS4class{MassPeaks}}
 #' object.
-#' 
+#'
 #' @param object a \code{\linkS4class{MassPeaks}} object or a list of
 #'  \code{\linkS4class{MassPeaks}} objects
 #' @param chargeState \emph{z}, charge states used to look for isotopic pattern
@@ -37,7 +37,7 @@
 #'  \code{\link[MALDIquant]{detectPeaks,MassSpectrum-method}},
 #'  \code{\link[MALDIquantTools]{averagineTable}},
 #'  \code{\link[MALDIquantTools]{uniProtTable}}
-#' @aliases monoisotopic,MassPeaks-method monoisotopic,list-method
+#' @aliases monoisotopic monoisotopic,MassPeaks-method monoisotopic,list-method
 #' @docType methods
 #' @keywords methods
 #' @rdname monoisotopic-methods
@@ -47,7 +47,7 @@
 ## MassPeaks
 setMethod(f="monoisotopic",
   signature=signature(object="MassPeaks"),
-  definition=function(object, chargeState=1, 
+  definition=function(object, chargeState=1,
                       isotopicDistance=1.00235,
                       ## Park et al 2008, Anal. Chem.
                       tolerance=1e-3, intensityTolerance=0.2,
@@ -123,9 +123,9 @@ setMethod(f="monoisotopic",
 
       ## prefer highest scored intensity to select monoisotopic mass
       maxCol <- max.col(dIntensity, "first")
-      
+
       isMono <- matrix(FALSE, nrow=nrow(bPotMono), ncol=ncol(bPotMono))
-      
+
       for (i in seq(along=maxCol)) {
         isMono[i, maxCol[i]] <- TRUE
       }
@@ -150,7 +150,7 @@ setMethod(f="monoisotopic",
   definition=function(object, ...) {
   ## test arguments
   MALDIquant:::.stopIfNotIsMassPeaksList(object)
-  
+
   return(lapply(object, monoisotopic, ...))
 })
 

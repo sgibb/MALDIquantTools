@@ -1,6 +1,9 @@
-\name{.isotopicScore}
-\alias{.isotopicScore}
+\name{.isotopicScore,MassPeaks-method}
+\alias{.isotopicScore,MassPeaks-method}
 \title{Calculate isotopic score.}
+\usage{
+  \S4method{.isotopicScore}{MassPeaks}(object, ...)
+}
 \arguments{
   \item{object}{\code{\linkS4class{MassPeaks}} object.}
 

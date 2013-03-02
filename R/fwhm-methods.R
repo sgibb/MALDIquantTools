@@ -14,17 +14,17 @@
 ## See <http://www.gnu.org/licenses/>
 
 #' FWHM
-#' 
+#'
 #' This method calculates the \emph{f}ull-\emph{w}idth at
 #' \emph{h}alf-\emph{m}aximum for each peak.
-#' 
+#'
 #' @param spec a \code{\linkS4class{MassSpectrum}} object or a list of
 #'  \code{\linkS4class{MassSpectrum}} objects
 #' @param peaks a \code{\linkS4class{MassPeaks}} object or a list of
 #'  \code{\linkS4class{MassPeaks}} objects
 #'
 #' @seealso \code{\linkS4class{MassPeaks}}, \code{\linkS4class{MassSpectrum}}
-#' @aliases fwhm,MassSpectrum,MassPeaks-method fwhm,list,list-method
+#' @aliases fwhm fwhm,MassSpectrum,MassPeaks-method fwhm,list,list-method
 #' @docType methods
 #' @keywords methods
 #' @rdname fwhm-methods
@@ -32,7 +32,7 @@
 #'
 setMethod(f="fwhm",
   signature=signature(spec="MassSpectrum", peaks="MassPeaks"),
-  definition=function(spec, peaks) { 
+  definition=function(spec, peaks) {
 
   ## empty?
   if (MALDIquant:::.isEmptyWarning(spec) ||
@@ -66,22 +66,22 @@ setMethod(f=".fwhm",
   n <- length(spectrum)
   left <- ifelse(i < 1, 1, i)
   right <- ifelse(i > n, n, i)
-  
+
   hm <- spectrum@intensity[i]/2
-  
+
   while (left > 1 && spectrum@intensity[left] > hm) {
     left <- left-1
   }
   while (right < n && spectrum@intensity[right] > hm) {
     right <- right+1
   }
-  
+
   ## interpolate x values
   xleft <- approx(x=spectrum@intensity[left:(left+1)],
                   y=spectrum@mass[left:(left+1)], xout=hm)$y
   xright <- approx(x=spectrum@intensity[(right-1):right],
                    y=spectrum@mass[(right-1):right], xout=hm)$y
-                   
+
   return(abs(xleft-xright))
 })
 

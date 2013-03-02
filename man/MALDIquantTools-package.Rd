@@ -10,7 +10,7 @@
 }
 \details{
   \tabular{ll}{ Package: \tab MALDIquantTools \cr Version:
-  \tab 0.17\cr Date: \tab 2012-12-11\cr License: \tab GPL
+  \tab 0.18\cr Date: \tab 2013-03-02\cr License: \tab GPL
   (>= 3)\cr URL: \tab
   http://strimmerlab.org/software/maldiquant/\cr }
 }

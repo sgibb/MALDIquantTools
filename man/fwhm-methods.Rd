@@ -1,5 +1,4 @@
-\docType{methods}
-\name{fwhm}
+\name{fwhm,MassSpectrum,MassPeaks-method}
 \alias{fwhm}
 \alias{fwhm,list,list-method}
 \alias{fwhm,MassSpectrum,MassPeaks-method}
