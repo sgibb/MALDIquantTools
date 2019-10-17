@@ -1,10 +1,15 @@
 # MALDIquantTools
 
+[![Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.](https://www.repostatus.org/badges/latest/abandoned.svg)](https://www.repostatus.org/#abandoned)
+
 ## Description
 
 Additional tools for [MALDIquant](http://strimmerlab.org/software/maldiquant/)
 This package is **not** intended for
 public release on [CRAN](http://cran.r-project.org/).
+
+This package is abandoned. There is no further development and no guarantee
+that it is still working.
 
 ## Install
 
@@ -16,10 +21,10 @@ install_github("sgibb/MALDIquantTools")
 
 ## Features
 
-- Calculate FWHM. 
-- Find reference peaks in each individual spectrum.
-- Find monoisotopic peaks in spectra.
-- Draw gelmaps 
+- Calculate FWHM.
+- Find reference peaks in each individual spectrum. 
+- Find monoisotopic peaks in spectra ([moved to MALDIquant](https://github.com/sgibb/MALDIquant/))
+- Draw gelmaps
 
 ## Gelmap Example
 ```r

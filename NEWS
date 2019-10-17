@@ -1,6 +1,9 @@
 RELEASE HISTORY OF THE "MALDIquantTools" PACKAGE
 ================================================
 
+Version 0.19 [2019-10-16]:
+- Adapt to MALDIquant 1.19; Package abandoned.
+
 Version 0.18 [2013-03-02]:
 - Some internal changes, now depends on MALDIquant 1.6.
 
