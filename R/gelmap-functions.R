@@ -14,9 +14,8 @@
 ## See <http://www.gnu.org/licenses/>
 
 #' This function draws a simple pseudo-gelmap.
-#' 
-#' @param x a list of \code{\linkS4class{MassSpectrum}} or a list of
-#'  \code{\linkS4class{MassPeaks}} objects.
+#'
+#' @param x an `intensityMatrix`.
 #' @param col gelmap colours.
 #' @param rowLabels labels of rows.
 #' @param dendrogram a \code{\link[stats]{dendrogram}} which is plotted on the
@@ -28,7 +27,7 @@
 #' @param \ldots further arguments passed to \code{\link[graphics]{image}}.
 #'
 #' @export
-#' @seealso \code{\linkS4class{MassPeaks}}, \code{\linkS4class{MassSpectrum}}
+#' @seealso \code{\link[MALDIquant]{intensityMatrix}}
 #' @rdname gelmap
 #' @examples
 #' library("MALDIquant")
@@ -37,12 +36,12 @@
 #'
 #' ## select some tumor/control subset
 #' spectra <- fiedler2009subset[9:16]
-#' 
+#'
 #' ## run preprocessing
-#' spectra <- transformIntensity(spectra, sqrt)
-#' spectra <- transformIntensity(spectra, movingAverage, halfWindowSize=2)
-#' spectra <- removeBaseline(spectra)
-#' spectra <- standardizeTotalIonCurrent(spectra)
+#' spectra <- transformIntensity(spectra, method="sqrt")
+#' spectra <- smoothIntensity(spectra, method="MovingAverage", halfWindowSize=2)
+#' spectra <- removeBaseline(spectra, method="SNIP")
+#' spectra <- calibrateIntensity(spectra, method="TIC")
 #' peaks <- detectPeaks(spectra)
 #' peaks <- binPeaks(peaks)
 #'
@@ -51,40 +50,19 @@
 #' fullName <- sapply(peaks, function(x)metaData(x)$fullName)
 #' rowLabels <- paste(fullName, " (", ifelse(tumor, "T", "C"), ")", sep="")
 #'
-#' ## plot gelmap
-#' gelmap(peaks, rowLabels=rowLabels)
-#'
 #' ## run clustering and create dendrogram
-#' iM <- intensityMatrix(peaks)
-#' iM[is.na(iM)] <- 0
+#' iM <- intensityMatrix(peaks, spectra)
 #' d <- dist(iM, method="euclidean")
 #' d <- as.dendrogram(hclust(d, method="complete"), hang=-1)
 #'
 #' ## plot gelmap
-#' gelmap(peaks, rowLabels=rowLabels, dendrogram=d)
+#' gelmap(iM, rowLabels=rowLabels, dendrogram=d, xlab="mass [Da]")
 #'
-gelmap <- function(x, col=gray((255:1)/255), rowLabels, 
+gelmap <- function(x, col=gray((255:1)/255), rowLabels,
                    dendrogram, dendrogramRatio=1/5, xlab="mass", cex.axis=0.75,
                    ...) {
   ## handle arguments
   optArgs <- list(...)
-
-  if (MALDIquant::isMassSpectrumList(x)) {
-    arguments <- list(x=x)
-
-    if (hasArg("nbins")) {
-      arguments$nbins <- optArgs$nbins
-      optArgs[["nbins"]] <- NULL
-    } else {
-      arguments$nbins <- median(unlist(lapply(x, length)))/10
-    }
-
-    x <- do.call(.binSpectrum, arguments)
-  }
-
-  if (MALDIquant::isMassObjectList(x)) {
-    x <- MALDIquant::intensityMatrix(x)
-  }
 
   stopifnot(is.matrix(x))
 
@@ -93,7 +71,7 @@ gelmap <- function(x, col=gray((255:1)/255), rowLabels,
   par(cex.axis=cex.axis)
   par(cex.lab=cex.axis)
   on.exit(par(parSettings))
-  
+
   nr <- nrow(x)
   nc <- ncol(x)
 

@@ -1,12 +1,12 @@
 Package: MALDIquantTools
-Version: 0.18
-Date: 2013-03-02
+Version: 0.19
+Date: 2019-10-17
 Title: Additional tools for MALDIquant
 Authors@R: c(person("Sebastian", "Gibb", role=c("aut", "cre"),
     email="mail@sebastiangibb.de"))
 Depends:
     R (>= 2.14.0),
-    MALDIquant (>= 1.6),
+    MALDIquant (>= 1.19),
     methods
 Suggests:
     BRAIN (>= 1.0),
@@ -30,3 +30,4 @@ Collate:
     'fwhm-methods.R'
     'isotopicScore-functions.R'
     'pseudoCluster-functions.R'
+RoxygenNote: 6.1.1

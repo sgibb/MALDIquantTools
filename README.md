@@ -11,7 +11,7 @@ public release on [CRAN](http://cran.r-project.org/).
 ```R
 install.packages("devtools")
 library("devtools")
-install_github("MALDIquantTools", "sgibb")
+install_github("sgibb/MALDIquantTools")
 ```
 
 ## Features
@@ -22,7 +22,7 @@ install_github("MALDIquantTools", "sgibb")
 - Draw gelmaps 
 
 ## Gelmap Example
-```R
+```r
 library("MALDIquant")
 library("MALDIquantTools")
 data(fiedler2009subset)
@@ -31,10 +31,10 @@ data(fiedler2009subset)
 spectra <- fiedler2009subset[9:16]
 
 ## run preprocessing
-spectra <- transformIntensity(spectra, sqrt)
-spectra <- transformIntensity(spectra, movingAverage, halfWindowSize=2)
-spectra <- removeBaseline(spectra)
-spectra <- standardizeTotalIonCurrent(spectra)
+spectra <- transformIntensity(spectra, method="sqrt")
+spectra <- smoothIntensity(spectra, method="MovingAverage", halfWindowSize=2)
+spectra <- removeBaseline(spectra, method="SNIP")
+spectra <- calibrateIntensity(spectra, method="TIC")
 peaks <- detectPeaks(spectra)
 peaks <- binPeaks(peaks)
 
@@ -44,12 +44,11 @@ fullName <- sapply(peaks, function(x)metaData(x)$fullName)
 rowLabels <- paste(fullName, " (", ifelse(tumor, "T", "C"), ")", sep="")
 
 ## run clustering and create dendrogram
-iM <- intensityMatrix(peaks)
-iM[is.na(iM)] <- 0
+iM <- intensityMatrix(peaks, spectra)
 d <- dist(iM, method="euclidean")
 d <- as.dendrogram(hclust(d, method="complete"), hang=-1)
 
 ## plot gelmap
-gelmap(peaks, rowLabels=rowLabels, dendrogram=d, xlab="mass [Da]")
+gelmap(iM, rowLabels=rowLabels, dendrogram=d, xlab="mass [Da]")
 ```
 ![gelmap](https://github.com/sgibb/MALDIquantTools/raw/master/images/gelmap.png)
